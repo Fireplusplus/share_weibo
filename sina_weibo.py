@@ -68,12 +68,12 @@ def get_access_token(app_key, app_secret, redirect_url):
     return resj['access_token']
 
 def share_weibo(text, img):
-    app_key = '1232039546'
-    app_secret = 'b81cc8bb4d37b8009d36cbb28fdd7ed1'
+    app_key = ''
+    app_secret = ''
     redirect_url = 'https://weibo.com/5296864682/profile?topnav=1&wvr=6'
     
     #access_token = get_access_token(app_key, app_secret, redirect_url)
-    access_token = '2.001TGTmFalV42B73c8930ca3SHcoIE'
+    access_token = ''
     
     #安全域名，sina限制文本内容必须有此字段
     safe_domain = 'https://weibo.com/5296864682/profile?topnav=1&wvr=6'
