@@ -41,8 +41,25 @@ def get_auth_url(client_id, redirect_uri):
                             _encode_params(client_id=client_id,
                                            response_type='code',
                                            redirect_uri=redirect_uri))
-                                           
+
+def read_local_token():
+    f = open("token", "r")
+    token = f.read(32)
+    f.close()
+    
+    if len(token) != 32:
+        return false
+    return token
+    
 def get_access_token(app_key, app_secret, redirect_url):
+    #先尝试从本地读取token
+    token = read_local_token()
+    if token :
+        print(token)
+        return token
+
+    #通过url_auth输入weibo账号进行登录
+    #从登录成功后的回调url获得code
     url_auth = get_auth_url(app_key, redirect_url)
     print('[get_access_token]' + url_auth)
     log('[get_access_token]' + url_auth)
@@ -58,6 +75,7 @@ def get_access_token(app_key, app_secret, redirect_url):
     "redirect_uri":redirect_url
     }
     
+    #获取access_token
     res = requests.post(url_get_token, data=payload)
     print(res.text)
     
@@ -72,8 +90,7 @@ def share_weibo(text, img):
     app_secret = ''
     redirect_url = 'https://weibo.com/5296864682/profile?topnav=1&wvr=6'
     
-    #access_token = get_access_token(app_key, app_secret, redirect_url)
-    access_token = ''
+    access_token = get_access_token(app_key, app_secret, redirect_url)
     
     #安全域名，sina限制文本内容必须有此字段
     safe_domain = 'https://weibo.com/5296864682/profile?topnav=1&wvr=6'
