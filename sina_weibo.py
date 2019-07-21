@@ -6,7 +6,7 @@ import requests
 
 
 def log(str):
-    f = open(r'Y:\Users\gaoliang\Desktop\s\log.txt', 'a')
+    f = open(r'Y:\Users\gaoliang\Desktop\ziliao\log.txt', 'a')
     f.write(str + '\n')
     f.close()
 
@@ -93,7 +93,8 @@ def share_weibo(text, img):
     access_token = get_access_token(app_key, app_secret, redirect_url)
     
     #安全域名，sina限制文本内容必须有此字段
-    safe_domain = 'https://weibo.com/5296864682/profile?topnav=1&wvr=6'
+    #safe_domain = 'https://weibo.com/5296864682/profile?topnav=1&wvr=6'
+    safe_domain = 'http://t.cn/Ail9RrCT?m=4396434457668133&u=5296864682'
     url_share = 'https://api.weibo.com/2/statuses/share.json'
     
     payload = {
@@ -112,9 +113,11 @@ def share_weibo(text, img):
     return res
 
 if __name__ == '__main__':
-    f = open(r"Y:\Users\gaoliang\Desktop\ziliao\share.jpg", "rb")
+    f = open(r"Y:\Users\gaoliang\Desktop\ziliao\1.mp4", "rb")
     
     text = input('Input text:')
-    res = share_weibo(text, f)
+    #res = share_weibo(text, f)
+    res = share_weibo(text, False)
+    print(res.text)
     f.close()
     print(res)
