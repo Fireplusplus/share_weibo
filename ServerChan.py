@@ -5,7 +5,7 @@ def infoReq(res):
     print(res.text)
 
 def sendNotify(title, content):
-    api = "https://sc.ftqq.com/SCU68512T4adba4e6a033e0aded8c0587aa1400585df0fda467b05.send"
+    api = "https://sc.ftqq.com/xxxxxxxxxxxxxxxxxxxxxxxx.send"
     data = {
         "text":title,
         "desp":content
